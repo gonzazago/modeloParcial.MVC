@@ -1,0 +1,33 @@
+﻿@model List<modeloParcial.MVC.Models.NuevoEjercicio>
+@{
+    ViewBag.Title = "ListarEjercicios";
+    
+    Layout = "~/Views/Shared/_LayoutBase.cshtml";
+}
+
+<h2>ListarEjercicios</h2>
+<span>
+    @if (ViewBag.Message != "") {
+        @ViewBag.Message;
+    }
+    
+</span>
+<div>
+    <table class="bordered">
+        <tr>
+            <th>Nombre</th>
+            <th>Indicaciones</th>
+            <th>tipo</th>
+            <th>nivel de Esfuerzo</th>
+        </tr>
+        @foreach (var e in @Model) {
+            <tr>
+                <td>@e.Nombre</td>
+                <td>@e.Indicaciones</td>
+                <td>@e.tipo</td>
+                <td>@e.nivelEsfuerzo</td>
+            </tr>
+        }
+    </table>
+</div>
+

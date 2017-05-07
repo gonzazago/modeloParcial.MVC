@@ -1,0 +1,66 @@
+﻿@model modeloParcial.MVC.Models.NuevoEjercicio
+
+
+@{
+    Layout = "~/Views/Shared/_LayoutBase.cshtml";
+    ViewBag.Title = "Nuevo Ejercicio";
+    List<modeloParcial.MVC.Models.TipoEj> tipo = ViewBag.Tipo;
+    List<modeloParcial.MVC.Models.NivelEsfuerzo> ne = ViewBag.Ne;
+}
+
+<h2>Nuevo</h2>
+
+<div class="row">
+    <form action="/Home/Nuevo" class="col s12" method="Post">
+        <fieldset>
+            <legend>Nuevo Ejercicio</legend>
+                <div class="input-field col s6">
+                    <input type="text" name="Nombre" />
+                    @Html.ValidationMessageFor(x => x.Nombre)
+                </div>
+                <div class="input-field col s12">
+                    <select class= "browser-default" name="tipo">
+                        <option value="" selected="">Seleccione un Tipo</option>
+                        @foreach (var i in tipo)
+                        {
+                            <option value="@i.desc">@i.desc</option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(x => x.tipo)
+                </div>
+
+                <div class="input-field col s12">
+                    <select name="nivelEsfuerzo" class="browser-default">
+                        <option value="" selected="">Seleccione un Tipo</option>
+                        @foreach (var n in ne)
+                        {
+                            <option value="@n.desc">@n.desc</option>
+                        }
+                    </select>
+                </div>
+                <div class="row">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea type="text" name="Indicaciones" class="materialize-textarea"></textarea>
+                            @Html.ValidationMessageFor(x => x.Indicaciones)
+                        </div>
+                    </div>
+                </div>
+                <a href="/Home/ListarEjercicios" class="waves-effect waves-light btn">
+                    Cancelar
+                </a>
+                <button class="btn waves-effect waves-light" type="submit">
+                    Guardar
+                    <i class="material-icons right">send</i>
+                </button>
+        </fieldset>
+
+    </form>
+    <span>
+        @if (ViewBag.Message != "")
+        {
+            @ViewBag.Message;
+        }
+
+    </span>
+</div>
